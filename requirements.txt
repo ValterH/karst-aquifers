@@ -1,0 +1,9 @@
+alibi
+matplotlib
+numpy
+pandas
+scikit_learn
+scipy
+seaborn
+tqdm
+git+https://github.com/parrt/random-forest-importances.git@d192087b31aea4d3569b0bef80e53b25019ccf36#egg=rfpimp&subdirectory=src
