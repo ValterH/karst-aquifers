@@ -3,6 +3,11 @@ from rfpimp import oob_dropcol_importances
 from sklearn.metrics import mean_squared_error
 
 
+def squared_error(y_true, y_pred):
+    # per sample squared error
+    return (y_true - y_pred) ** 2
+
+
 def negative_rmse(y_true, y_pred):
     return -np.sqrt(mean_squared_error(y_true, y_pred))
 

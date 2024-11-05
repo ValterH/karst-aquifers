@@ -7,7 +7,7 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
 
-from utils import feature_selection, column_names
+from utils import feature_selection, squared_error, column_names
 
 sns.set_theme()
 
@@ -31,23 +31,20 @@ args = parser.parse_args()
 target = args.target
 m = args.bootstrap_repeats
 
+# Define the model
+model_kwargs = dict(n_estimators=100, oob_score=squared_error)
+
 # Load the dataset
 df = pd.read_csv("data/aquifers.csv")
 names = df.pop("AQUIFER")
 y = df[target]
 X = df[column_names]
 # feature selection
-columns = feature_selection(X, y)
+columns = feature_selection(
+    X, y, model_cls=RandomForestRegressor, model_kwargs=model_kwargs
+)
 X = X[columns]
 
-
-# Define the model
-# per sample squared error
-def squared_error(y_true, y_pred):
-    return (y_true - y_pred) ** 2
-
-
-model_kwargs = dict(n_estimators=100, oob_score=squared_error)
 
 # Train the model
 scores = []
