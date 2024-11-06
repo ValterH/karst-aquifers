@@ -15,6 +15,8 @@ sns.set_theme()
 os.makedirs("results/ALE", exist_ok=True)
 os.makedirs("results/PDP", exist_ok=True)
 os.makedirs("results/ICE", exist_ok=True)
+os.makedirs("figures/ALE", exist_ok=True)
+os.makedirs("figures/PDP", exist_ok=True)
 
 df = pd.read_csv("data/aquifers.csv")
 names = df.pop("AQUIFER")
